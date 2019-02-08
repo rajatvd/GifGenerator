@@ -69,4 +69,4 @@ def get_numbered_filename(dirname, name, ext):
 
 
 # %%
-get_numbered_filename('gifs\\neural_ode_gifs', "neural_ode_", ".gif")
+# get_numbered_filename('gifs\\neural_ode_gifs', "neural_ode_", ".gif")
