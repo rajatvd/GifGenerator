@@ -2,6 +2,6 @@ torchvision
 sacred
 pytorch-utils
 apscheduler
-telegram
+python-telegram-bot
 torch
 torchdiffeq
