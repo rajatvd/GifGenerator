@@ -1,0 +1,7 @@
+torchvision
+torch
+sacred
+pytorch-utils
+torchdiffeq
+apscheduler
+telegram
