@@ -29,7 +29,7 @@ def make_telegram_bot(infofile):
 def send_gif(gif, bot, id, timeout=100):
     """Send a gif using the bot to the given chat id.
 
-    Actually sends a mp4 video.
+    Actually sends an audioless mp4 video.
     """
     with open(gif, "rb") as f:
         bot.send_video(id, f, timeout=timeout)
