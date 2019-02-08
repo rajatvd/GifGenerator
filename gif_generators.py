@@ -27,16 +27,16 @@ CONFIGS = {}
 
 # %%
 @export(GIFFERS, CONFIGS)
-def neural_ode_gif(device='cuda',
-                   frames=100,
-                   duration=0.04,
-                   end_time=500,
-                   channels_per_colour=1,
-                   eps=1e-5,
-                   image_size=(224, 224),
-                   smooth_colours=False,
-                   save_dir='gifs/neural_ode_gifs',
-                   _log=logging.getLogger("neural_ode_gif")):
+def neural_ode(device='cuda',
+               frames=100,
+               fps=60,
+               end_time=500,
+               channels_per_colour=1,
+               eps=1e-5,
+               image_size=(224, 224),
+               smooth_colours=False,
+               save_dir='gifs/neural_ode_gifs',
+               _log=logging.getLogger("neural_ode_gif")):
     """Create a gif using a randomly initialized neural ODE.
 
     Parameters
@@ -45,8 +45,8 @@ def neural_ode_gif(device='cuda',
         Device to run gif generation on (the default is 'cuda').
     frames : int
         Number of frames of gif to generate (the default is 100).
-    duration : float
-        Duration of each frame of gif (the default is 0.04).
+    fps : float
+        Frames per second (the default is 60).
     end_time : float
         End time of neural ode integration (the default is 500).
     channels_per_colour : int
@@ -101,14 +101,14 @@ def neural_ode_gif(device='cuda',
         else:
             ims = torch.sigmoid(ims)
 
-        _log.info(f"min = {ims.min().item}, max = {ims.max().item()}")
+        _log.info(f"min = {ims.min().item()}, max = {ims.max().item()}")
 
         ims = ims.cpu().detach().numpy().transpose([0, 2, 3, 1])
         ims = (ims*255).astype('uint8')
 
-        filename = get_numbered_filename(save_dir, "neural_ode_", ".gif")
+        filename = get_numbered_filename(save_dir, "neural_ode_", ".mp4")
 
-        imageio.mimwrite(filename, ims, duration=0.04)
+        imageio.mimwrite(filename, ims, fps=fps)
 
         return filename
 
@@ -116,4 +116,4 @@ def neural_ode_gif(device='cuda',
 remove_key(CONFIGS, "_log")
 
 # %%
-# neural_ode_gif()
+# neural_ode()
