@@ -11,8 +11,8 @@ ACTS = {
     'tanh': nn.Tanh,
     }
 
-# %%
 
+# %%
 def conv3x3(in_planes, out_planes, stride=1):
     """3x3 convolution with padding."""
     return nn.Conv2d(in_planes, out_planes, kernel_size=3,
@@ -73,7 +73,8 @@ class ConvODEfunc(nn.Module):
     dim : int
         Number of channels in input (and output).
     act : string
-        Activation function. One of relu, sigmoid or tanh (the default is 'relu').
+        Activation function. One of relu, sigmoid or tanh
+        (the default is 'relu').
     """
 
     def __init__(self, dim, act='relu'):
