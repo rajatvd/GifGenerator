@@ -22,7 +22,7 @@ def main_config():
     minutes = 0
     seconds = 0
 
-    count = 2
+    count = 2  # how many gifs to generate each run
 
 
 @ex.capture
@@ -36,6 +36,10 @@ def make_and_send_gif(giffer, bot, id, _config, _log):
 
 
 def job(infofile, count):
+    """Job which makes and sends count number of gifs.
+
+    Uses telegram bot from infofile.
+    """
     bot, id = make_telegram_bot(infofile)
     for i in range(count):
         make_and_send_gif(bot=bot, id=id)
@@ -43,7 +47,7 @@ def job(infofile, count):
 
 @ex.automain
 def main(giffer, infofile,
-         hours, minutes, seconds,
+         hours, minutes, seconds, count,
          _config, _log):
 
     sched = BlockingScheduler()
