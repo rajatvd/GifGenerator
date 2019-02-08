@@ -50,6 +50,8 @@ def main(giffer, infofile,
          hours, minutes, seconds, count,
          _config, _log):
 
+    job(infofile, count)
+
     sched = BlockingScheduler()
     sched.add_job(partial(job, infofile, count), 'interval',
                   hours=hours, minutes=minutes, seconds=seconds)
