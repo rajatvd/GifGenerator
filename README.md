@@ -1,8 +1,11 @@
 # Generate gifs using neural ODEs and send to telegram
 
-Randomly initialized neural ODEs can be used to generate neat looking animations by solving the ODE until a large end time. This repo contains a script which periodically generates gifs using this method, and sends them to a telegram chat using a telegram bot.
+Randomly initialized neural ODEs can be used to generate neat looking animations by solving the ODE until a large end time. This repo contains a script which periodically generates gifs using this method, and sends them to a telegram chat using a telegram bot. Here's an example gif:
+
+![example gif](example.gif)
 
 Include your [telegram bot](https://core.telegram.org/bots) details in a file called `info.json` with two keys, a `token` and a chat `id`.
+
 
 Run the service as:
 
