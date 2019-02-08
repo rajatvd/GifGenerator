@@ -10,7 +10,7 @@ Randomly initialized neural ODEs can be used to generate neat looking animations
 Include your [telegram bot](https://core.telegram.org/bots) details in a file called `info.json` with two keys, a `token` and a chat `id`.
 
 
-Run the service as:
+Run the generator script as:
 
 `python gif_generation_service.py with <config_updates>`
 
