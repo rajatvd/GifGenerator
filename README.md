@@ -4,7 +4,7 @@ Randomly initialized neural ODEs can be used to generate neat looking animations
 
 
 <p align="center">
-  <img src="example.gif">
+  <img width=448px height=448px src="example.gif">
 </p>
 
 Include your [telegram bot](https://core.telegram.org/bots) details in a file called `info.json` with two keys, a `token` and a chat `id`.
