@@ -71,6 +71,8 @@ def neural_ode(device='cuda',
     """
     channels = channels_per_colour * 3
 
+    _log.info("Creating neural ode gif")
+
     with torch.no_grad():
 
         f = ConvODEfunc(channels, act='relu').to(device).eval()
