@@ -8,10 +8,10 @@ import os
 def export(dic, confs=None):
     """Export the function by adding an entry into 'dic'.
 
-    The key is the function name.
+    The key is the function name, and the value is the function itself.
 
     confs: dict
-        Optional dictionary into which all keyword only arguments are
+        Optional dictionary into which all arguments with default values are
         put into as a config dict. Useful for sacred configs.
     """
     def export_decorator(f):
