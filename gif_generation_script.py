@@ -43,7 +43,7 @@ def make_and_send_gif(giffer, bot, id,
             _log.info("Retrying due to timeout...")
 
         with stopit.ThreadingTimeout(time_limit) as ctx:
-            gif = GIFFERS[giffer](**_config[giffer], _log=_log)
+            gif = GIFFERS[giffer](**_config[giffer])
 
         if ctx.state == ctx.EXECUTED:
             break
