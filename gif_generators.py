@@ -112,6 +112,12 @@ def neural_ode(device='cuda',
 
         imageio.mimwrite(filename, ims, fps=fps)
 
+        del f, odenet, inp, t, ims, r, g, b
+        if smooth_colours:
+            del flat, avg, std, normed
+
+        torch.cuda.empty_cache()
+
         return filename
 
 
