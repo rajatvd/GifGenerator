@@ -3,6 +3,7 @@ from functools import partial
 
 from sacred import Experiment
 from apscheduler.schedulers.blocking import BlockingScheduler
+import stopit
 
 from gif_generators import GIFFERS, CONFIGS
 from telegram_helpers import make_telegram_bot, send_gif
@@ -24,14 +25,31 @@ def main_config():
 
     count = 2  # how many gifs to generate each run
 
+    time_limit = 100  # time limit for execution
+    retries = 2  # total number of times to try if timeout occurs(should be >0)
+
 
 @ex.capture
-def make_and_send_gif(giffer, bot, id, _config, _log):
+def make_and_send_gif(giffer, bot, id,
+                      time_limit, retries,
+                      _config, _log):
     """Make gif using the giffer with the config.
 
     Send it using the bot to the given id.
     """
-    gif = GIFFERS[giffer](**_config[giffer], _log=_log)
+
+    for i in range(retries):
+        if i > 0:
+            _log.info("Retrying due to timeout...")
+
+        with stopit.ThreadingTimeout(time_limit) as ctx:
+            gif = GIFFERS[giffer](**_config[giffer], _log=_log)
+
+        if ctx.state == ctx.EXECUTED:
+            break
+    else:
+        _log.info("Could not generate gif within time limit, skipping call")
+        return
     send_gif(gif, bot, id)
 
 
