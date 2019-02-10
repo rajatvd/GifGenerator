@@ -36,6 +36,7 @@ def neural_ode(device='cuda',
                image_size=(224, 224),
                smooth_colours=False,
                save_dir='gifs/neural_ode_gifs',
+               tol=1e-3,
                _log=logging.getLogger("neural_ode_gif")):
     """Create a gif using a randomly initialized neural ODE.
 
@@ -76,7 +77,7 @@ def neural_ode(device='cuda',
     with torch.no_grad():
 
         f = ConvODEfunc(channels, act='relu').to(device).eval()
-        odenet = ODEBlock(f).to(device).eval()
+        odenet = ODEBlock(f, tol, tol).to(device).eval()
 
         inp = torch.randn(1, channels, *image_size).to(device)
         t = torch.linspace(0, end_time, frames).to(device)
